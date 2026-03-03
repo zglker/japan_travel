@@ -1,0 +1,457 @@
+/* ===== Sakura Travel Website — Stylesheet ===== */
+
+:root {
+  --sakura-pink: #f9b8c8;
+  --sakura-deep: #d9638a;
+  --sakura-dark: #9b2d55;
+  --sakura-light: #fde8ef;
+  --sakura-petal: #fdf0f4;
+  --leaf-green: #7aaf7a;
+  --text-main: #2c1a24;
+  --text-muted: #7a5a68;
+  --text-light: #b08090;
+  --bg-page: #fffbfd;
+  --bg-card: #ffffff;
+  --border: #f0d0dc;
+  --shadow: rgba(200, 80, 120, 0.10);
+  --radius: 14px;
+  --radius-sm: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.75;
+  min-height: 100vh;
+}
+
+/* ── Petals background decoration ── */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    radial-gradient(ellipse at 15% 10%, rgba(249,184,200,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 90%, rgba(217,99,138,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(249,200,218,0.15) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Header ── */
+.site-header {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(135deg, #f9b8c8 0%, #f5a0bc 40%, #e87fa8 100%);
+  color: white;
+  text-align: center;
+  padding: 48px 20px 40px;
+  box-shadow: 0 4px 20px rgba(200,80,130,0.25);
+  overflow: hidden;
+}
+
+.site-header::before {
+  content: '🌸 🌸 🌸 🌸 🌸';
+  position: absolute;
+  top: 10px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 22px;
+  opacity: 0.55;
+  letter-spacing: 12px;
+}
+.site-header::after {
+  content: '🌸 🌸 🌸 🌸 🌸';
+  position: absolute;
+  bottom: 10px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  opacity: 0.45;
+  letter-spacing: 8px;
+}
+
+.site-header h1 {
+  font-size: clamp(1.5rem, 5vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 8px rgba(150,30,80,0.25);
+  position: relative;
+}
+
+.site-header .trip-meta {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  opacity: 0.92;
+  letter-spacing: 0.06em;
+  position: relative;
+}
+
+/* ── Main container ── */
+.container {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Auto-jump status box ── */
+.auto-jump-box {
+  background: linear-gradient(135deg, #fde8ef, #fdf4f7);
+  border: 1.5px solid var(--sakura-pink);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 28px;
+  font-size: 0.92rem;
+  color: var(--sakura-dark);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.auto-jump-box .icon { font-size: 1.3rem; flex-shrink: 0; }
+
+/* ── Section title ── */
+h2.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sakura-dark);
+  border-left: 4px solid var(--sakura-deep);
+  padding-left: 12px;
+  margin: 36px 0 16px;
+  letter-spacing: 0.03em;
+}
+
+/* ── Day navigation grid ── */
+.day-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.day-card {
+  display: block;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  text-decoration: none;
+  color: var(--text-main);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.day-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--sakura-pink), var(--sakura-deep));
+  border-radius: 4px 0 0 4px;
+}
+
+.day-card:hover {
+  border-color: var(--sakura-deep);
+  box-shadow: 0 4px 16px var(--shadow);
+  transform: translateY(-2px);
+  background: var(--sakura-petal);
+}
+
+.day-card .day-num {
+  font-size: 0.78rem;
+  color: var(--sakura-deep);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.day-card .day-title {
+  font-size: 0.97rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.day-card .day-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ── Info tables (bookings, tickets) ── */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+  font-size: 0.92rem;
+}
+
+.info-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #f5e0e8;
+  vertical-align: top;
+}
+
+.info-table tr:last-child td { border-bottom: none; }
+
+.info-table td:first-child {
+  color: var(--sakura-deep);
+  font-weight: 600;
+  white-space: nowrap;
+  width: 130px;
+}
+
+.info-table tr:hover td { background: var(--sakura-petal); }
+
+/* ── Card / panel ── */
+.card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+
+/* ── Ticket tag ── */
+.tag {
+  display: inline-block;
+  background: var(--sakura-light);
+  color: var(--sakura-dark);
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 2px 10px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+
+.tag.green {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+/* ── Day detail page ── */
+.day-hero {
+  background: linear-gradient(135deg, #f9b8c8 0%, #e87fa8 100%);
+  color: white;
+  padding: 36px 20px 30px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 20px rgba(200,80,130,0.25);
+}
+
+.day-hero .day-label {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.day-hero h1 {
+  font-size: clamp(1.2rem, 4.5vw, 1.9rem);
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(150,30,80,0.2);
+}
+
+.day-hero .day-date-badge {
+  display: inline-block;
+  margin-top: 10px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 20px;
+  padding: 4px 16px;
+  font-size: 0.88rem;
+  letter-spacing: 0.05em;
+}
+
+/* ── Nav breadcrumb ── */
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--sakura-light);
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  position: relative;
+  z-index: 1;
+  gap: 6px;
+}
+
+.nav-bar a {
+  color: var(--sakura-dark);
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 4px 10px;
+  border-radius: 20px;
+  transition: background 0.15s;
+}
+
+.nav-bar a:hover { background: var(--sakura-pink); }
+
+.nav-bar .home-link {
+  color: var(--sakura-dark);
+  opacity: 0.85;
+}
+
+/* ── Summary info block ── */
+.summary-block {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin: 24px 0 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 24px;
+  font-size: 0.91rem;
+}
+
+.summary-item .label {
+  font-size: 0.76rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+}
+
+.summary-item .value {
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+/* ── Time section ── */
+.time-section {
+  margin: 20px 0;
+}
+
+.time-section h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sakura-dark);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.time-section h3 .emoji { font-size: 1.1rem; }
+
+.time-section p {
+  font-size: 0.93rem;
+  color: var(--text-main);
+  line-height: 1.7;
+}
+
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  color: var(--sakura-deep);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border: 1.5px solid var(--sakura-pink);
+  padding: 5px 14px;
+  border-radius: 20px;
+  background: var(--sakura-petal);
+  transition: all 0.2s;
+}
+
+.map-link:hover {
+  background: var(--sakura-pink);
+  color: var(--sakura-dark);
+}
+
+/* ── Notes block ── */
+.notes-block {
+  background: linear-gradient(135deg, #fde8ef, #fff6f9);
+  border-left: 4px solid var(--sakura-deep);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 14px 18px;
+  margin: 18px 0;
+  font-size: 0.91rem;
+}
+
+.notes-block h3 {
+  font-size: 0.85rem;
+  color: var(--sakura-dark);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+
+.notes-block ul {
+  list-style: none;
+  padding: 0;
+}
+
+.notes-block ul li {
+  padding: 3px 0;
+  padding-left: 18px;
+  position: relative;
+  color: var(--text-main);
+}
+
+.notes-block ul li::before {
+  content: '🌸';
+  position: absolute;
+  left: 0;
+  font-size: 0.75rem;
+  top: 5px;
+}
+
+/* ── Booking badge ── */
+.booked-badge {
+  display: inline-block;
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-size: 0.76rem;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 1px 7px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 0.82rem;
+  color: var(--text-light);
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+/* ── Divider ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 24px 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 560px) {
+  .summary-block {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .nav-bar {
+    font-size: 0.8rem;
+    padding: 8px 10px;
+  }
+  .info-table td:first-child {
+    width: 110px;
+  }
+}
